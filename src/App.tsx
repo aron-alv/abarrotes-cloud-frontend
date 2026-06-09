@@ -28,7 +28,8 @@ function App() {
 
 
 const validarAcceso = async (sesionActual: Session | null) => {
-    
+    console.log('Validando acceso para sesión:', sesionActual);
+    debugger;
     if (!sesionActual || !sesionActual.user.email) {
       setSession(null);
       setIsAllowed(false);

@@ -15,6 +15,12 @@ export interface ClienteCreditoCreateDTO {
   saldoActual: number;
 }
 
+export interface EliminarClienteCreditoDTO {
+  clienteId: string;
+  tiendaId: string;
+  usuarioId: string;
+}
+
 
 export interface AbonoCredito {
   id: string;

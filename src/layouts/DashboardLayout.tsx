@@ -157,6 +157,7 @@ export const DashboardLayout = ({ session, tiendaId, usuarioId }: { session: any
         return (
           <ClientesCreditoPantalla
             tiendaId={tiendaId}
+            usuarioId={usuarioId}
           />
         );
 

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { creditosService } from '../../services/creditosService';
-import { Users, Loader2, DollarSign, Phone, User } from 'lucide-react';
+import { Users, Loader2, DollarSign, Phone, User,Trash2, Edit } from 'lucide-react';
 import type { ClienteCredito } from '../../types/creditos';
 
-export const ClientesCreditoPantalla = ({ tiendaId }: { tiendaId: string }) => {
+export const ClientesCreditoPantalla = ({ tiendaId, usuarioId }: { tiendaId: string; usuarioId: string }) => {
   const [clientes, setClientes] = useState<ClienteCredito[]>([]);
   const [cargando, setCargando] = useState(false);
 
@@ -55,6 +55,28 @@ export const ClientesCreditoPantalla = ({ tiendaId }: { tiendaId: string }) => {
     } finally {
       setCargando(false);
     }
+  };
+
+  const handleEliminar = async (clienteId: string) => {
+    if (!window.confirm("¿Estás seguro de eliminar este cliente? Esta acción no se puede deshacer.")) return;
+    
+    if (!usuarioId) return alert("No se pudo identificar la sesión del usuario.");
+
+ try {
+      setCargando(true);
+      await creditosService.eliminarClienteCredito({ clienteId, tiendaId, usuarioId });
+      await cargarClientes();
+      alert("¡Cliente eliminado correctamente!");
+      
+    } catch (error: any) {
+      alert("Error al eliminar cliente: " + (error.response?.data || "Verifica tu backend"));
+      console.error("Error al eliminar cliente", error);
+    } finally {
+      setCargando(false);
+    }
+
+
+
   };
 
   return (
@@ -110,7 +132,7 @@ export const ClientesCreditoPantalla = ({ tiendaId }: { tiendaId: string }) => {
     
       <div className="xl:col-span-2">
         {/* COLUMNA DERECHA: TABLA DE CLIENTES */}
-      <div className="xl:col-span-2">
+        <div className="xl:col-span-2">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm h-full">
           <h2 className="text-xl font-bold mb-4 text-slate-800">Todos los Clientes</h2>
           
@@ -128,6 +150,7 @@ export const ClientesCreditoPantalla = ({ tiendaId }: { tiendaId: string }) => {
                     <th className="p-4 font-semibold">Teléfono</th>
                     <th className="p-4 font-semibold">Límite de Crédito</th>
                     <th className="p-4 font-semibold text-right rounded-tr-xl">Deuda Actual</th>
+                    <th className= "p-4 font-semibold text-right rounded-tr-xl">Acciones</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -147,6 +170,14 @@ export const ClientesCreditoPantalla = ({ tiendaId }: { tiendaId: string }) => {
                           ${cliente.saldoActual.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                         </span>
                       </td>
+                      <td className="p-4 text-right">
+                        
+                        <button onClick={() => handleEliminar(cliente.id)}
+                         className="p-2 text-red-500 hover:bg-red-50 hover:text-red-700 rounded-lg transition-colors disabled:opacity-50" title="Eliminar cliente">
+                          <Trash2 size={20} />
+                        </button>
+                        
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -154,7 +185,7 @@ export const ClientesCreditoPantalla = ({ tiendaId }: { tiendaId: string }) => {
             </div>
           )}
         </div>
-      </div>
+        </div>
       </div>
     </div>
   );

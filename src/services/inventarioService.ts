@@ -5,7 +5,7 @@ import type { Categoria, CategoriaCreateDTO, MovimientoKardex, KardexCreateDTO }
 export const inventarioService = {
   // ----- CATEGORÍAS -----
  obtenerCategorias: async (tiendaId: string): Promise<Categoria[]> => {
-
+debugger;
     const { data } = await api.get<Categoria[]>(`/Categorias?tiendaId=${tiendaId}`);
     return data;
   },
