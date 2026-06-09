@@ -1,73 +1,26 @@
-# React + TypeScript + Vite
+# AbarrotesCloud - Frontend Web App 🛒💻
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fast, and responsive Single Page Application (SPA) serving as the user interface for the AbarrotesCloud Point of Sale (POS) SaaS. 
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
+* **Framework:** React 18
+* **Language:** TypeScript
+* **Build Tool:** Vite
+* **HTTP Client:** Axios
+* **Authentication:** Supabase Auth (Google OAuth)
+* **Deployment:** Vercel
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Key Features
+* **Decoupled Architecture:** Seamlessly consumes a separate .NET 8 RESTful API hosted on Microsoft Azure.
+* **Social Authentication:** Secure, frictionless login flow using Google OAuth managed via Supabase.
+* **State Management & Routing:** Optimized component rendering for high-speed POS transactions and inventory management.
+* **Environment Configuration:** Secure handling of API endpoints via Vite environment variables (`VITE_API_URL`).
 
-## React Compiler
+## 🌍 Live Deployment
+This frontend is continuously deployed and globally distributed via **Vercel**. It is fully integrated with the production Azure backend and PostgreSQL database.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Local Development Setup
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repository:
+```bash
+git clone [https://github.com/aron-alv/abarrotes-cloud-frontend.git](https://github.com/aron-alv/abarrotes-cloud-frontend.git)
