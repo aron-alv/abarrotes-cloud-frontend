@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { creditosService } from '../../services/creditosService';
-import { Users, Loader2, DollarSign, Phone, User,Trash2, Edit } from 'lucide-react';
+import { Users, Loader2, DollarSign, Phone, User,Trash2} from 'lucide-react';
 import type { ClienteCredito } from '../../types/creditos';
 
 export const ClientesCreditoPantalla = ({ tiendaId, usuarioId }: { tiendaId: string; usuarioId: string }) => {
